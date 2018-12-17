@@ -10,8 +10,10 @@
 
 .img___3Nf5l {
   object-fit: contain;
-  height: 60%;
-  width: 60%; }
+  height: 100%;
+  width: 100%;
+  max-width: 100vw;
+  max-height: 80vh; }
 
 
 /*# sourceMappingURL=main.css.map*/
