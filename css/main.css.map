@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/components/TheCodingLove/theCodingLove.css"],"names":[],"mappings":"AAAA;EACE,mBAAmB,EAAE;;AAEvB;EACE,WAAW,EAAE","file":"css/main.css","sourcesContent":[".container {\n  text-align: center; }\n\n.img {\n  width: 50%; }\n"],"sourceRoot":""}
