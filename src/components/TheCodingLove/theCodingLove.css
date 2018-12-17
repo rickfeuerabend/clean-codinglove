@@ -11,5 +11,7 @@
 }
 
 .img {
-  width: 70vh;
+  object-fit: contain;
+  height: 90%;
+  width: 90%;
 }
