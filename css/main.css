@@ -1,8 +1,15 @@
 .container___GLKTx {
+  background: #000;
   text-align: center; }
 
+.title___2fpCA {
+  font-size: 50px;
+  margin: 20px;
+  font-family: Helvetica;
+  color: #fff; }
+
 .img___3Nf5l {
-  width: 50%; }
+  width: 70%; }
 
 
 /*# sourceMappingURL=main.css.map*/
