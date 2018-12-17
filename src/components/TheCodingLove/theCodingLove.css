@@ -1,7 +1,15 @@
 .container {
+  background: #000;
   text-align: center;
 }
 
+.title {
+  font-size: 50px;
+  margin: 20px;
+  font-family: Helvetica;
+  color: #fff;
+}
+
 .img {
-  width: 50%;
+  width: 70%;
 }

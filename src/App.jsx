@@ -1,7 +1,8 @@
 // jshint ignore: start
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import * as qs from 'query-string';
+
+import cheerio from 'cheerio';
 
 import TheCodingLove from './components/TheCodingLove';
 
@@ -9,22 +10,36 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.fetchRandomEntry();
   }
 
-  // getRandomUrl() {
-  // console.log('Load thecodinglove.com');
+  fetchRandomEntry() {
+    fetch('https://cors-anywhere.herokuapp.com/https://thecodinglove.com/')
+      .then(responseRandom => responseRandom.text())
+      .then(res => {
+        const $ = cheerio.load(res);
+        const randomUrl = $('.nav-link').attr('href');
+        fetch(`https://cors-anywhere.herokuapp.com/${randomUrl}`)
+          .then(response => response.text())
+          .then(result => {
+            const $$ = cheerio.load(result);
+            const blogpost = $$('.blog-post').first();
 
-  // fetch(
-  //   'https://cors-anywhere.herokuapp.com/https://thecodinglove.com/',
-  // ).then(response => console.log(response));
-  // }
+            const gif = blogpost
+              .children('.blog-post-content')
+              .find('img')
+              .attr('src');
+            const title = blogpost.children('.blog-post-title').text();
+
+            this.setState({ gif, title });
+          });
+      });
+  }
 
   render() {
-    // this.getRandomUrl();
-
-    // eslint-disable-next-line
-    const queryParams = qs.parse(location.search);
-    return <TheCodingLove gif={queryParams.gif} title={queryParams.title} />;
+    const { gif, title } = this.state;
+    if (!gif) return null;
+    return <TheCodingLove gif={gif} title={title} />;
   }
 }
 

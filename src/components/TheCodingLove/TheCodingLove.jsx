@@ -4,7 +4,7 @@ import style from './theCodingLove.css';
 
 const TheCodingLove = ({ title, gif }) => (
   <div className={style.container}>
-    <h1>{title}</h1>
+    <h1 className={style.title}>{title}</h1>
     <img alt={title} className={style.img} src={gif} />
   </div>
 );
