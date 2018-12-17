@@ -9,7 +9,9 @@
   color: #fff; }
 
 .img___3Nf5l {
-  width: 70vh; }
+  object-fit: contain;
+  height: 90%;
+  width: 90%; }
 
 
 /*# sourceMappingURL=main.css.map*/
