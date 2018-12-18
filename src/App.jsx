@@ -1,10 +1,16 @@
 // jshint ignore: start
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-
 import cheerio from 'cheerio';
 
 import TheCodingLove from './components/TheCodingLove';
+
+import stlyes from './app.css';
+
+import load1 from './assets/load1.gif';
+import load3 from './assets/load3.gif';
+
+const loadings = [load1, load3];
 
 class App extends Component {
   constructor(props) {
@@ -38,7 +44,14 @@ class App extends Component {
 
   render() {
     const { gif, title } = this.state;
-    if (!gif) return null;
+    if (!gif)
+      return (
+        <img
+          className={stlyes.loader}
+          alt="Clean coding love"
+          src={loadings[Math.floor(Math.random() * 2)]}
+        />
+      );
     return <TheCodingLove gif={gif} title={title} />;
   }
 }
