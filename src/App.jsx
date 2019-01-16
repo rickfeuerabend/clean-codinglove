@@ -20,25 +20,47 @@ class App extends Component {
   }
 
   fetchRandomEntry() {
-    fetch('https://cors-anywhere.herokuapp.com/https://thecodinglove.com/')
+    fetch('https://cors-anywhere.herokuapp.com/https://thecodinglove.com/', {
+      headers: {
+        Origin: 'https://thecodinglove.com',
+      },
+    })
       .then(responseRandom => responseRandom.text())
       .then(res => {
         const $ = cheerio.load(res);
         const randomUrl = $('.nav-link').attr('href');
-        fetch(`https://cors-anywhere.herokuapp.com/${randomUrl}`)
+
+        fetch(`https://cors-anywhere.herokuapp.com/${randomUrl}`, {
+          headers: {
+            Origin: 'https://thecodinglove.com',
+          },
+        })
           .then(response => response.text())
           .then(result => {
             const $$ = cheerio.load(result);
             const blogpost = $$('.blog-post').first();
 
-            const gif = blogpost
+            let gif = blogpost
               .children('.blog-post-content')
               .find('img')
               .attr('src');
-            const title = blogpost.children('.blog-post-title').text();
 
+            if (!gif) {
+              gif = blogpost
+                .children('.blog-post-content')
+                .find('object')
+                .attr('data');
+            }
+
+            const title = blogpost.children('.blog-post-title').text();
             this.setState({ gif, title });
+          })
+          .catch(error => {
+            throw error;
           });
+      })
+      .catch(error => {
+        throw error;
       });
   }
 
